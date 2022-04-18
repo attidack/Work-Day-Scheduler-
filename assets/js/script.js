@@ -10,6 +10,11 @@ function timeRowIteration(){
     var timeCol =$("<div>")
     .text(timeStep)
     .addClass("col-1 hour");
+    if (timeStep < 12 && timeStep > 8) {
+      timeCol.text(timeStep+"am")
+    }else{
+      timeCol.text(timeStep+"pm")
+    };
     var textCol = $('<div>')
     .addClass("col-10 description")
     .attr("id", "textarea")
@@ -21,9 +26,5 @@ function timeRowIteration(){
     dateRow.append(timeCol, textCol, saveBtns);
   }
   
-}
-timeRowIteration()
-
-if (timeAmPm.html() < 12) {
-  timeAmPm.html("pm")
-}
+};
+timeRowIteration();
