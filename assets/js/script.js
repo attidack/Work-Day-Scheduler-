@@ -1,11 +1,14 @@
 var time = [9,10,11,12,1,2,3,4,5]
 var container = $('.container')
-// time array,
-for (const timeStep of time) {
+var timeAmPm = $('.hour')
+
+function timeRowIteration(){
+  // time array,
+  for (const timeStep of time) {
     var dateRow = $("<div>")
     .addClass("row time-block");
     var timeCol =$("<div>")
-    .text('time')
+    .text(timeStep)
     .addClass("col-1 hour");
     var textCol = $('<div>')
     .addClass("col-10 description")
@@ -16,7 +19,11 @@ for (const timeStep of time) {
     .text('save');
     container.append(dateRow);
     dateRow.append(timeCol, textCol, saveBtns);
-    console.log("1")
-    
   }
   
+}
+timeRowIteration()
+
+if (timeAmPm.html() < 12) {
+  timeAmPm.html("pm")
+}
