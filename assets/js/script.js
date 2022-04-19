@@ -1,6 +1,7 @@
 var time = [9,10,11,12,1,2,3,4,5]
 var container = $('.container')
 var timeAmPm = $('.hour')
+var schedule = []
 
 function timeRowIteration(){
   // time array,
@@ -29,8 +30,10 @@ function timeRowIteration(){
 };
 timeRowIteration();
 
-
 // event listener
-function handleSave(event){
-    console.log(event.target.previousElementSibling)
+function handleSave(e){
+  var textBoxContents = e.target.previousElementSibling.value
+  var timePosition = $(this).siblings(".hour").text()
+  console.log(e.target.previousElementSibling.value)
+  console.log($(this).siblings(".hour").text())
 }
