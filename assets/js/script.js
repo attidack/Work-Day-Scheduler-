@@ -15,16 +15,22 @@ function timeRowIteration(){
     }else{
       timeCol.text(timeStep+"pm")
     };
-    var textCol = $('<div>')
+    var textCol = $('<textarea>')
     .addClass("col-10 description")
-    .attr("id", "textarea")
     .text('message');
     var saveBtns = $('<div>')
     .addClass("col-1 saveBtn")
     .text('save');
+    saveBtns.on("click", handleSave )
     container.append(dateRow);
     dateRow.append(timeCol, textCol, saveBtns);
+    
   }
-  
 };
 timeRowIteration();
+
+
+// event listener
+function handleSave(event){
+    console.log(event.target.previousElementSibling)
+}
