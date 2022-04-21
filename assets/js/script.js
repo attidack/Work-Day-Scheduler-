@@ -2,15 +2,15 @@ var time = [9,10,11,12,1,2,3,4,5]
 var container = $('.container')
 var timeAmPm = $('.hour')
 var schedule = []
-var scheduleIdCounter = 0
 var scheduleDataObj = {}
+$("#currentDay").text(moment().format('MMMM Do YYYY'));
 
 function timeRowIteration(){
   // time array,
   for (const timeStep of time) {
     var dateRow = $("<div>")
     .addClass("row time-block")
-    .attr("data-row-id", scheduleIdCounter);
+    .attr("data-row-id", timeStep);
     var timeCol =$("<div>")
     .text(timeStep)
     .addClass("col-1 hour");
@@ -28,10 +28,6 @@ function timeRowIteration(){
     saveBtns.on("click", handleSave )
     container.append(dateRow);
     dateRow.append(timeCol, textCol, saveBtns);
-    scheduleDataObj.id = scheduleIdCounter;
-    schedule.push(scheduleDataObj)
-    scheduleIdCounter++;
-    
   }
 };
 
@@ -45,19 +41,22 @@ function handleSave(e){
   }
   schedule.push(scheduleDataObj)
   localStorage.setItem("schedule", JSON.stringify(schedule));
-  loadSchedule(scheduleDataObj)
+  // loadSchedule(scheduleDataObj)
 }
-function loadSchedule(){
-  const schedule = JSON.parse(localStorage.getItem('schedule'))
-  if (schedule == null || schedule == "") {
-    timeRowIteration()
-  }
+
+
+
+// function loadSchedule(){
+//   const schedule = JSON.parse(localStorage.getItem('schedule'))
+//   if (schedule == null || schedule == "") {
+//     timeRowIteration()
+//   }
   
-  // loop through savedTasks array
-  for (var i = 0; i < schedule.length; i++) {
-    // pass each task object into the function that creates the row
-    timeRowIteration(schedule[i])
-}
-  console.log(schedule)
-}
-loadSchedule();
+//   // loop through savedTasks array
+//   for (var i = 0; i < schedule.length; i++) {
+//     // pass each task object into the function that creates the row
+//     timeRowIteration(schedule[i])
+// }
+//   console.log(schedule)
+// }
+timeRowIteration();
