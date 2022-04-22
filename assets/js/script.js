@@ -8,8 +8,6 @@ var currentTime = moment().format('ha')
 
 
 function timeRowIteration(){
-  
-  // time array,
   for (let i = 0; i < time.length; i++) {
     var dateRow = $("<div>")
     .addClass("row time-block")
@@ -39,7 +37,6 @@ timeRowIteration()
 function handleSave(e){
   var textBoxContents = e.target.previousElementSibling.value
   var timePosition = $(this).siblings(".hour").text()
-  var localid = $(this).parent("div").attr("data-row-id")
   var scheduleDataObj =  {
     time: timePosition,
     message: textBoxContents
