@@ -1,6 +1,6 @@
 var time = [9,10,11,12,1,2,3,4,5]
 var container = $('.container')
-var timeAmPm = $('.hour')
+var timeAmPm = $('.hour').text("9")
 var scheduleDataObj = {}
 $("#currentDay").text(moment().format('MMMM Do YYYY'));
 
@@ -34,25 +34,34 @@ function handleSave(e){
   var textBoxContents = e.target.previousElementSibling.value
   var timePosition = $(this).siblings(".hour").text()
   var localid = $(this).parent("div").attr("data-row-id")
-  var scheduleDataObj = {
+  var scheduleDataObj =  {
     id: localid,
     time: timePosition,
     message: textBoxContents
   }
-  localStorage.setItem("schedule", JSON.stringify(scheduleDataObj));
+  localStorage.setItem(localid, JSON.stringify(scheduleDataObj));
 }
 
 
 
 function loadSchedule(scheduleDataObj){
-  const schedule = JSON.parse(localStorage.getItem('schedule'))
+  const schedule = JSON.parse(localStorage.getItem('9'))
   if (schedule == null || schedule == "") {
     timeRowIteration()
   }else{
+    $('.hour')
+    // for (let index = 0; index < schedule.length; index++) {
+    //   const element = array[index];
+      
+    // }
     timeRowIteration()
+
   }
+  // if (schedule.id = ) {
+    
+  // }
   
 
-  console.log(schedule)
+  console.log(timeAmPm)
 }
 loadSchedule();
