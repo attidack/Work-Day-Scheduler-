@@ -6,7 +6,7 @@ var scheduleItem = {}
 $("#currentDay").text(moment().format('MMMM Do YYYY'));
 var currentTime = moment().format('ha')
 
-
+// HTML creation of rows based on the "time" array
 function timeRowIteration(){
   for (let i = 0; i < time.length; i++) {
     var dateRow = $("<div>")
@@ -34,6 +34,8 @@ function timeRowIteration(){
 };
 timeRowIteration()
 
+
+//handles the saving of the time and message to local host, find the values, add values to an array, then add that array to a another array, then save to loacl storage
 function handleSave(e){
   var textBoxContents = e.target.previousElementSibling.value
   var timePosition = $(this).siblings(".hour").text()
@@ -44,6 +46,7 @@ function handleSave(e){
   scheduleItem[scheduleDataObj.time] = scheduleDataObj.message
   localStorage.setItem("schedule", JSON.stringify(scheduleItem));
 }
+//placing items from local storage into the textblock
 function setItems(){
   $.each(scheduleItem, function(key, value){
     var hour = key;
@@ -55,6 +58,7 @@ function setItems(){
     messageUpdate.text(message)
   })
 }
+// loading the items from local storage
 function loadSchedule(){
   scheduleItem = JSON.parse(localStorage.getItem('schedule'))
   if (!scheduleItem) {
